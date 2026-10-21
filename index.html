@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portofolio pribadi — profil, keterampilan, proyek, dan kontak.">
+  <title>Portofolio Pribadi | Nama Anda</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2e;
+      --text: #edf2ff;
+      --muted: #a9b5cf;
+      --accent: #6ee7b7;
+      --accent2: #7aa7ff;
+      --border: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: radial-gradient(circle at 80% 0%, #1b2b50 0, var(--bg) 38%);
+      color: var(--text); line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 90%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11,16,32,.82); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; min-height: 72px; gap: 20px; }
+    .logo { font-size: 1.15rem; font-weight: 800; letter-spacing: .4px; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; list-style: none; color: var(--muted); font-size: .95rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-btn { display: none; background: transparent; color: var(--text); border: 1px solid var(--border); padding: 7px 10px; border-radius: 8px; }
+    .hero { display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 55px; padding: 95px 0 85px; min-height: 78vh; }
+    .eyebrow { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: .8rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.8rem); line-height: 1.08; margin: 15px 0 22px; letter-spacing: -2px; }
+    h1 span { color: var(--accent); }
+    .hero p, .section-intro { color: var(--muted); max-width: 620px; }
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 28px; }
+    .btn { display: inline-block; border-radius: 10px; padding: 12px 19px; font-weight: 750; border: 1px solid var(--border); transition: .2s; }
+    .btn-primary { color: #07130f; background: var(--accent); border-color: var(--accent); }
+    .btn:hover { transform: translateY(-2px); }
+    .profile-card { background: linear-gradient(145deg, rgba(110,231,183,.13), rgba(122,167,255,.12)); border: 1px solid var(--border); padding: 28px; border-radius: 26px; text-align: center; box-shadow: 0 25px 70px rgba(0,0,0,.22); }
+    .avatar { width: 180px; height: 180px; margin: 0 auto 20px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0b1020; font-size: 4rem; font-weight: 900; border: 6px solid rgba(255,255,255,.12); }
+    .profile-card p { color: var(--muted); font-size: .92rem; }
+    section { padding: 76px 0; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 12px; }
+    .section-intro { margin-bottom: 30px; }
+    .about-grid, .project-grid, .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .panel { background: rgba(18,26,46,.82); border: 1px solid var(--border); border-radius: 18px; padding: 24px; }
+    .panel h3 { margin-bottom: 8px; }
+    .panel p { color: var(--muted); font-size: .95rem; }
+    .skill { margin-bottom: 18px; }
+    .skill:last-child { margin-bottom: 0; }
+    .skill-head { display: flex; justify-content: space-between; color: var(--muted); font-size: .92rem; margin-bottom: 7px; }
+    .bar { height: 8px; border-radius: 20px; background: #26314b; overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .tag { display: inline-block; margin: 12px 5px 0 0; padding: 5px 10px; border-radius: 20px; color: var(--accent); background: rgba(110,231,183,.09); border: 1px solid rgba(110,231,183,.2); font-size: .8rem; }
+    .project-icon { font-size: 1.7rem; margin-bottom: 10px; }
+    .contact-box { display: flex; justify-content: space-between; align-items: center; gap: 25px; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); font-size: .9rem; text-align: center; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding: 65px 0; gap: 35px; }
+      .profile-card { max-width: 420px; }
+      .about-grid, .project-grid, .skill-grid { grid-template-columns: 1fr; }
+      .menu-btn { display: block; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; padding: 20px 5%; background: #0b1020; border-bottom: 1px solid var(--border); flex-direction: column; gap: 15px; }
+      .nav-links.open { display: flex; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Navigasi utama">
+      <a class="logo" href="#beranda">PORTO<span>FOLIO.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka menu" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#skill">Keahlian</a></li>
+        <li><a href="#proyek">Proyek</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero" id="beranda">
+      <div>
+        <div class="eyebrow">Halo, selamat datang di portofolio saya</div>
+        <h1>Saya <span>Nama Anda</span>,<br>Mahasiswa Informatika.</h1>
+        <p>Saya tertarik pada pengembangan web, desain antarmuka, dan teknologi. Saya senang belajar hal baru serta membangun solusi digital yang bermanfaat.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#proyek">Lihat Proyek</a>
+          <a class="btn" href="#kontak">Hubungi Saya</a>
+        </div>
+      </div>
+      <aside class="profile-card">
+        <div class="avatar" aria-label="Inisial nama">NA</div>
+        <h2>Alfreyza Tajuddin</h2>
+        <p>Informatika · Mahasiswa</p>
+        <span class="tag">Kreatif</span><span class="tag">Terus Belajar</span>
+      </aside>
+    </section>
+
+    <section id="tentang">
+      <div class="container">
+        <h2 class="section-title">Tentang Saya</h2>
+        <p class="section-intro">Perkenalan singkat mengenai diri dan minat saya.</p>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>🎓 Pendidikan</h3>
+            <p>Mahasiswa Program Studi Informatika. Sedang memperdalam dasar pemrograman, basis data, dan rekayasa perangkat lunak.</p>
+          </article>
+          <article class="panel">
+            <h3>💡 Minat</h3>
+            <p>Pengembangan website, UI/UX, aplikasi, serta pemecahan masalah menggunakan teknologi.</p>
+          </article>
+          <article class="panel">
+            <h3>🎯 Tujuan</h3>
+            <p>Mengembangkan kemampuan teknis, membuat proyek nyata, dan berkolaborasi dalam tim.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skill">
+      <div class="container">
+        <h2 class="section-title">Keahlian</h2>
+        <p class="section-intro">Contoh kemampuan yang dapat disesuaikan dengan kemampuan Anda saat ini.</p>
+        <div class="skill-grid">
+          <div class="panel">
+            <div class="skill">
+              <div class="skill-head"><span>HTML & CSS</span><span>80%</span></div>
+              <div class="bar"><span style="width:80%"></span></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>JavaScript</span><span>60%</span></div>
+              <div class="bar"><span style="width:60%"></span></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>PHP & MySQL</span><span>55%</span></div>
+              <div class="bar"><span style="width:55%"></span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Teknologi</h3>
+            <p>Teknologi yang sedang dipelajari dan digunakan dalam proyek.</p>
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Laravel</span><span class="tag">Figma</span>
+          </div>
+          <div class="panel">
+            <h3>Kemampuan Pendukung</h3>
+            <p>Berpikir logis, kerja sama tim, komunikasi, pemecahan masalah, dan kemauan belajar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyek">
+      <div class="container">
+        <h2 class="section-title">Proyek Pilihan</h2>
+        <p class="section-intro">Ganti contoh proyek berikut dengan hasil karya Anda sendiri.</p>
+        <div class="project-grid">
+          <article class="panel">
+            <div class="project-icon">📚</div>
+            <h3>Perpustakaan Digital</h3>
+            <p>Aplikasi untuk menampilkan katalog buku dan mengelola data peminjaman.</p>
+            <span class="tag">PHP</span><span class="tag">MySQL</span>
+          </article>
+          <article class="panel">
+            <div class="project-icon">🎓</div>
+            <h3>Portal Informasi Beasiswa</h3>
+            <p>Website yang membantu pengguna menemukan informasi beasiswa secara terstruktur.</p>
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">UI/UX</span>
+          </article>
+          <article class="panel">
+            <div class="project-icon">🗓️</div>
+            <h3>Sistem Jadwal Kuliah</h3>
+            <p>Antarmuka pengelolaan jadwal kuliah dan ruangan agar informasi lebih mudah diakses.</p>
+            <span class="tag">JavaScript</span><span class="tag">Web</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <div class="container">
+        <div class="panel contact-box">
+          <div>
+            <h2 class="section-title">Mari Terhubung</h2>
+            <p class="section-intro" style="margin-bottom:0">Punya ide proyek atau ingin berdiskusi? Silakan hubungi saya.</p>
+          </div>
+          <div class="actions" style="margin-top:0">
+            <a class="btn btn-primary" href="mailto:emailanda@example.com">Kirim Email</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Nama Anda. Dibuat dengan HTML, CSS, dan JavaScript.</div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
